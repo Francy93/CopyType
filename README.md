@@ -30,7 +30,7 @@ The Auto Typer is a small utility tool designed to automate keyboard inputs on W
 
 <font color="blue"><h3>Download 📥</h3></font>
 
-You can download the latest version of the Auto Typer from the [Releases](build/CopyType.exe) page.
+You can download the latest version of the Auto Typer from here -> [Download File](build/CopyType.exe).
 
 <font color="blue"><h3>Contributing 🤝</h3></font>
 
@@ -42,12 +42,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Instructions for Compiling
+<font color="blue"><h3>Instructions for Compiling</h3></font>
 
-- `make`:			Build the executable file 'main'.
-- `make run`:		Build and run the executable file.
-- `make run?..`:	Allows passing arguments to the executable (e.g., `make run?arg1` or `make run?'arg1 arg2'`).
-- `make clean`:		Remove every .o and executable files.
-- `make remake`:	Execute a make clean and subsequently compile all.
-- `make debug`:		Display more detailed messages.
-- `make help`:		Show brief guidelines about this makefile usage.
+| Command       | Description                                                  |
+|---------------|--------------------------------------------------------------|
+| `make`        | Build the executable file 'main'.                            |
+| `make run`    | Build and run the executable file.                           |
+| `make run?..` | Allows passing arguments to the executable (e.g., `make run?arg1` or `make run?'arg1 arg2'`). |
+| `make clean`  | Remove every .o and executable files.                        |
+| `make remake` | Execute a make clean and subsequently compile all.           |
+| `make debug`  | Display more detailed messages.                              |
+| `make help`   | Show brief guidelines about this makefile usage.             |
