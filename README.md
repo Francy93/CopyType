@@ -2,7 +2,7 @@
   <img height="200px" width="200px" style="display: block;" src="asset/key.png"/>
   <summary align="center">
     <font color="blue">
-      <h1 align="center">Auto Typer</h1>
+      <h1 align="center">Copy Type</h1>
     </font>
   </summary>
   <p align="center">A simple auto-typer tool for automating keyboard inputs.</p>
@@ -23,8 +23,8 @@ The Auto Typer is a small utility tool designed to automate keyboard inputs on W
 
 1. Download the latest release of the Auto Typer from the [Releases](build/CopyType.exe) page.
 2. Extract the downloaded ZIP file to your desired location.
-3. Double-click on the "AutoTyper.exe" file to launch the application.
-4. Enter the text you want to type in the input field.
+3. Double-click on the "CopyType.exe" file to launch the application.
+4. Copy into the clipboard the text you want to be typed.
 5. Adjust the typing speed and any other settings as needed.
 6. Click the "Start" button to begin typing. You can stop typing at any time by clicking the "Stop" button.
 
@@ -39,3 +39,15 @@ Contributions are welcome! If you have any ideas for improvements or new feature
 <font color="blue"><h3>License 📄</h3></font>
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Instructions for Compiling
+
+- `make`:			Build the executable file 'main'.
+- `make run`:		Build and run the executable file.
+- `make run?..`:	Allows passing arguments to the executable (e.g., `make run?arg1` or `make run?'arg1 arg2'`).
+- `make clean`:		Remove every .o and executable files.
+- `make remake`:	Execute a make clean and subsequently compile all.
+- `make debug`:		Display more detailed messages.
+- `make help`:		Show brief guidelines about this makefile usage.

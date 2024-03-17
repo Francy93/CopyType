@@ -1,3 +1,9 @@
+# excluding bin directory
+bin/
+.vscode/
+
+
+
 # Prerequisites
 *.d
 
@@ -27,6 +33,6 @@
 *.lib
 
 # Executables
-*.exe
+# *.exe
 *.out
 *.app
