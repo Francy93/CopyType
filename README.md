@@ -7,15 +7,17 @@
   </summary>
   <p align="center">A simple auto-typer tool for automating keyboard inputs.</p>
 </p><br>
-<a href="https://github.com/Francy93/CopyType/blob/master/LICENSE">
-	<img src="https://img.shields.io/badge/License-MIT-green">
-</a>
-<a href="https://github.com/Francy93/CopyType/releases">
-	<img src="https://img.shields.io/badge/Release-1.0-purple">
-</a>
-<a href="https://www.microsoft.com/en-gb/windows">
-	<img src="https://img.shields.io/badge/Platform-WindowsOS-blue">
-</a>
+<p align="center">
+	<a href="https://github.com/Francy93/CopyType/blob/master/LICENSE">
+		<img src="https://img.shields.io/badge/License-MIT-green">
+	</a>
+	<a href="https://github.com/Francy93/CopyType/releases">
+		<img src="https://img.shields.io/badge/Release-1.0-purple">
+	</a>
+	<a href="https://www.microsoft.com/en-gb/windows">
+		<img src="https://img.shields.io/badge/Platform-WindowsOS-blue">
+	</a>
+</p>
 
 <font color="blue"><h2>Overview 📋</h2></font>
 
