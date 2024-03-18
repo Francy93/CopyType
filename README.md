@@ -30,7 +30,7 @@ The Auto Typer is a small utility tool designed to automate keyboard inputs on W
 
 <font color="blue"><h3>Download 📥</h3></font>
 
-You can download the latest version of the Auto Typer from here -> <a href="build/CopyType.exe" download>Download build/CopyType.exe</a> [Download CopyType.exe](build/CopyType.exe)
+You can download the latest version of the Auto Typer from here -> [Download CopyType.exe](https://github.com/Francy93/CopyType/blob/master/build/CopyType.exe)
 
 <font color="blue"><h3>Contributing 🤝</h3></font>
 
