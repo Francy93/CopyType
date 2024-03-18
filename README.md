@@ -10,11 +10,11 @@
 		<a href="https://github.com/Francy93/CopyType/blob/master/LICENSE">
 			<img src="https://img.shields.io/badge/License-MIT-green">
 		</a>
-		<a href="https://github.com/Francy93/CopyType/releases">
-			<img src="https://img.shields.io/badge/Release-1.0-purple">
-		</a>
 		<a href="https://www.microsoft.com/en-gb/windows">
 			<img src="https://img.shields.io/badge/Platform-WindowsOS-blue">
+		</a>
+		<a href="https://github.com/Francy93/CopyType/releases">
+			<img src="https://img.shields.io/badge/Release-1.0-purple">
 		</a>
 	</p>
 </p><br>
