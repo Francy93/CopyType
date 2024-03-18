@@ -1,23 +1,24 @@
 <p align="center">
-  <img height="200px" width="200px" style="display: block;" src="asset/key.png"/>
-  <summary align="center">
-    <font color="blue">
-      <h1 align="center">Copy Type</h1>
-    </font>
-  </summary>
-  <p align="center">A simple auto-typer tool for automating keyboard inputs.</p>
+	<img height="200px" width="200px" style="display: block;" src="asset/key.png"/>
+	<summary align="center">
+		<font color="blue">
+			<h1 align="center">Copy Type</h1>
+		</font>
+	</summary>
+	<p align="center">A simple auto-typer tool for automating keyboard inputs.</p>
+ 	<p align="center">
+		<a href="https://github.com/Francy93/CopyType/blob/master/LICENSE">
+			<img src="https://img.shields.io/badge/License-MIT-green">
+		</a>
+		<a href="https://github.com/Francy93/CopyType/releases">
+			<img src="https://img.shields.io/badge/Release-1.0-purple">
+		</a>
+		<a href="https://www.microsoft.com/en-gb/windows">
+			<img src="https://img.shields.io/badge/Platform-WindowsOS-blue">
+		</a>
+	</p>
 </p><br>
-<p align="center">
-	<a href="https://github.com/Francy93/CopyType/blob/master/LICENSE">
-		<img src="https://img.shields.io/badge/License-MIT-green">
-	</a>
-	<a href="https://github.com/Francy93/CopyType/releases">
-		<img src="https://img.shields.io/badge/Release-1.0-purple">
-	</a>
-	<a href="https://www.microsoft.com/en-gb/windows">
-		<img src="https://img.shields.io/badge/Platform-WindowsOS-blue">
-	</a>
-</p>
+
 
 <font color="blue"><h2>Overview 📋</h2></font>
 
