@@ -7,6 +7,15 @@
   </summary>
   <p align="center">A simple auto-typer tool for automating keyboard inputs.</p>
 </p><br>
+<a href="https://github.com/Francy93/CopyType/blob/master/LICENSE">
+	<img src="https://img.shields.io/badge/License-MIT-green">
+</a>
+<a href="https://github.com/Francy93/CopyType/releases">
+	<img src="https://img.shields.io/badge/Release-1.0-purple">
+</a>
+<a href="https://www.microsoft.com/en-gb/windows">
+	<img src="https://img.shields.io/badge/Platform-WindowsOS-blue">
+</a>
 
 <font color="blue"><h2>Overview 📋</h2></font>
 
@@ -21,7 +30,7 @@ The Auto Typer is a small utility tool designed to automate keyboard inputs on W
 
 <font color="blue"><h3>How to Use 🚀</h3></font>
 
-1. Download the latest release of the Auto Typer from the [Releases](releases/download/FirstRelease/CopyType.exe) page.
+1. Download the latest release of the Auto Typer from the [Releases](https://github.com/Francy93/CopyType/releases) page.
 2. Extract the downloaded ZIP file to your desired location.
 3. Double-click on the "CopyType.exe" file to launch the application.
 4. Copy into the clipboard the text you want to be typed.
@@ -30,7 +39,7 @@ The Auto Typer is a small utility tool designed to automate keyboard inputs on W
 
 <font color="blue"><h3>Download 📥</h3></font>
 
-You can download the latest version of the Auto Typer from here -> [Download CopyType.exe](https://github.com/Francy93/CopyType/releases/download/FirstRelease/CopyType.exe)
+You can download the latest version of the Auto Typer from the following link -> [Download](https://github.com/Francy93/CopyType/releases/download/FirstRelease/CopyType.exe)
 
 <font color="blue"><h3>Contributing 🤝</h3></font>
 
