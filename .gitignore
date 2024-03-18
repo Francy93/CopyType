@@ -1,7 +1,7 @@
 # excluding bin directory
 bin/
+build/
 .vscode/
-
 
 
 # Prerequisites
@@ -33,6 +33,6 @@ bin/
 *.lib
 
 # Executables
-# *.exe
+*.exe
 *.out
 *.app
