@@ -104,7 +104,7 @@ ifeq ($(OS),Windows_NT)
 		NL			:=	echo
 		EXITSTATUS	:=	$$?
 		NPROCS		:=	$(shell grep -c 'processor' /proc/cpuinfo)
-		MAIN_MATCH	:=	"^(\s)*(unsigned\s+)?(void|bool|short|int|long|long\s+long|double|char)\s+main\s*\((\s|\S)*\)\s*\{?"
+		MAIN_MATCH	:=	"^\s*(/\*(\s|\S)*\*/\s*)*(signed\s+int|int|int\s+signed)\s+main\s*\(\s*(void|int\s+\S+\,\s+char\s*\*{2,2}\s+\S+)?\s*\)\s*\{?(/{2,}(\s|\S)*|/\*(\s|\S)*)?"
 		SRCEXT_FIND	=	egrep -E --include=\*.$(if $(SRCEXT),$(SRCEXT),*) -rnwl $(if $(strip $(SRC_DIR)),$(SRC_DIR),.) -e $(MAIN_MATCH) 2> /dev/null
 		EXIT1		=	$(if $(filter true,$(DISP_INFO)),exit 1,exit 1 &> /dev/null)
 		FIXPATH		=	$1
@@ -119,7 +119,7 @@ ifeq ($(OS),Windows_NT)
 		NL			:=	type nul | more /e /p
 		EXITSTATUS	:=	%errorlevel%
 		NPROCS		:=	$(lastword $(strip $(shell WMIC CPU Get NumberOfLogicalProcessors)))
-		MAIN_MATCH	:=	"^[ ]*[unsigned ]*[ ]*[void bool char short int long long long double][ ][ ]*main[ ]*(.*)[ ]*{*"
+		MAIN_MATCH	:=	"^[ ]*int[ ]*main[ ]*\(.*\)[ ]*"
 		SRCEXT_FIND	=	findstr /s /i /m /r /c:$(MAIN_MATCH) $(call DIRSEP,$(SRC_DIR))*.$(if $(SRCEXT),$(SRCEXT),*) 2>nul
 		EXIT1		=	$(if $(filter true,$(DISP_INFO)),exit 1,exit 1 >nul 2>&1)
 		FIXPATH		=	$(subst /,$\,$1)
@@ -135,7 +135,7 @@ else
 	NL			:=	echo
 	EXITSTATUS	:=	$$?
 	NPROCS		:=	$(if $(findstring Mac_OS,$(OS)),$(shell sysctl hw.ncpu  | grep -o '[0-9]\+'),$(shell grep -c 'processor' /proc/cpuinfo))
-	MAIN_MATCH	:=	"^(\s)*(unsigned\s+)?(void|bool|short|int|long|long\s+long|double|char)\s+main\s*\((\s|\S)*\)\s*\{?"
+	MAIN_MATCH	:=	"^\s*(/\*(\s|\S)*\*/\s*)*(signed\s+int|int|int\s+signed)\s+main\s*\(\s*(void|int\s+\S+\,\s+char\s*\*{2,2}\s+\S+)?\s*\)\s*\{?(/{2,}(\s|\S)*|/\*(\s|\S)*)?"
 	SRCEXT_FIND	=	egrep -E --include=\*.$(if $(SRCEXT),$(SRCEXT),*) -rnwl $(if $(strip $(SRC_DIR)),$(SRC_DIR),.) -e $(MAIN_MATCH) 2> /dev/null
 	EXIT1		=	$(if $(filter true,$(DISP_INFO)),exit 1,exit 1 &> /dev/null)
 	FIXPATH		=	$1
@@ -551,7 +551,8 @@ help:
 		$"(e.g:$" $(call COLOR,make,yellow)$" run?arg1 OR $"$(call COLOR,make,yellow)$" run?'arg1 arg2')$"
 	@$(PRINTLN) $(call COLOR,make,yellow)$" debug  - builds/updates everything displaying more detailed messages$"
 	@$(NL)$(BR) $(MESSAGE_1.7)
-	@$(PRINTLN) $"Operative System:	$"$(call COLOR,$(if $(OS)$(PROCESSOR_ARCHITECTURE),$(OS) ($(PROCESSOR_ARCHITECTURE)),$"Unknown$"),$(if $(OS)$(PROCESSOR_ARCHITECTURE),green,red))
+	@$(PRINTLN) $"Operative System:	$"$(call COLOR,$(if $(OS),$(OS),$"Unknown$"),$(if $(OS),green,red))
+	@$(PRINTLN) $"CPU architecture:	$"$(call COLOR,$(if $(PROCESSOR_ARCHITECTURE)$(NPROCS),$(PROCESSOR_ARCHITECTURE) (Core $(NPROCS)),$"Unknown$"),$(if $(PROCESSOR_ARCHITECTURE),green,red))
 	@$(PRINTLN) $"Terminal:		$"$(call COLOR,$(if $(TERMINAL),$(TERMINAL),$"Unknown$"),$(if $(TERMINAL),green,red))
 	@$(PRINTLN) $"Main src file name:	$"$(call COLOR,$(if $(TARGET_N),$(TARGET_N),$"Unknown$"),$(if $(TARGET_N),green,red))
 	@$(PRINTLN) $"Detected Language:	$"$(call COLOR,$(if $(SRCEXT),$(SRCEXT),$"Unknown$"),$(if $(SRCEXT),green,red))
