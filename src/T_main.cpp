@@ -18,7 +18,7 @@ void T_main::countDown(int countdown) {
 // Main function
 int T_main::t_main() {
 	// Retrieve parameters from configuration file
-    Config conf = Config(false);
+    Config conf = Config(true);
     return T_main::t_main(conf);
 }
 int T_main::t_main(Config& config) {
