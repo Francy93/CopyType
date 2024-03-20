@@ -1,18 +1,21 @@
 #ifndef TYPE_HXX
 #define TYPE_HXX
 
-#include <Windows.h>    // Include the necessary header file
+#include <Windows.h>    // Windows API
 #include <iostream>     // used for input and output
 #include <thread>       // Iused for thread in function countDown
 
+#include "../include/Config.hpp"       // Configuration file
+
+
 class Type {
     private:
-        int speed;
+        Config config;
         std::wstring textToType;
 
     public:
         // Constructor
-        Type(const int S);
+        Type(Config& conf);
         // Destructor
         ~Type();
 
@@ -30,9 +33,6 @@ class Type {
 
         // Function to read the clipboard and type the content
         void readType();
-
-        // Getter for speed
-        int getSpeed();
 
         // Getter for textToType
         std::wstring getTextToType();

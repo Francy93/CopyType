@@ -162,7 +162,8 @@ COLOR 	=	$(if $(filter red,$2),$(E_START)[1;31m$(subst ",,$1)$(E_END),$(if \
 					$(filter yellow,$2),$(E_START)[1;33m$(subst ",,$1)$(E_END),$(if \
 						$(filter blue,$2),$(E_START)[1;34m$(subst ",,$1)$(E_END),$(if \
 							$(filter magenta,$2),$(E_START)[1;35m$(subst ",,$1)$(E_END),$(if \
-								$(filter cyan,$2),$(E_START)[1;36m$(subst ",,$1)$(E_END),$1))))))
+								$(filter cyan,$2),$(E_START)[1;36m$(subst ",,$1)$(E_END),$(if \
+									$(filter orange,$2),$(E_START)[1;38;5;214m$(subst ",,$1)$(E_END),$1)))))))
 # upper case to lower case
 TO_LOWER	=	$(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$1))))))))))))))))))))))))))
 # lower case to upper case
@@ -396,7 +397,8 @@ MESSAGE_1.3	:=	$(PRINTLN) $(call COLOR,Compilator..,blue)
 MESSAGE_1.4	:=	$(PRINTLN) $(call COLOR,Assembler..,blue)
 MESSAGE_1.5	:=	$(PRINTLN) $(call COLOR,Warning!,magenta)$" Attempt to handle the exception by enabling the '-Ofast' optimizer flag..$"
 MESSAGE_1.6	:=	$(PRINTLN) $(call COLOR,MAKE HELP..,blue)
-MESSAGE_1.7	:=	$(PRINTLN) $(call COLOR,Environment Info..,blue)
+MESSAGE_1.7	:=	$(PRINTLN) $(call COLOR,    Make commands..,orange)
+MESSAGE_1.8	:=	$(PRINTLN) $(call COLOR,    Environment Info..,orange)
 # body messages
 MESSAGE_2.0	:=	echo $"Creating dir:$"
 MESSAGE_2.1	=	echo $"Compiling object file: $@$"
@@ -542,20 +544,21 @@ debug:
 # Help is intended to provide the user a minimum of guide-lines
 help:
 	$(if $(findstring MinGW,$(TERMINAL)),@echo >nul,)
-	@$(NL)$(BR) $(NL)$(BR) $(MESSAGE_1.6) $(BR) $(NL)$(BR)
-	@$(PRINTLN) $(call COLOR,make,yellow)$"        - builds/updates everything, is ready to run with $(TARGET_OUTPUT) after completion$"
-	@$(PRINTLN) $(call COLOR,make,yellow)$" clean  - removes object, file, folder and executable$"
-	@$(PRINTLN) $(call COLOR,make,yellow)$" remake - remake consist of cleaning and compiling all$"
-	@$(PRINTLN) $(call COLOR,make,yellow)$" run    - builds/updates everything, runs immediately$"
-	@$(PRINTLN) $(call COLOR,make,yellow)$" run?.. - unlike 'run', it allows passing arguments to the executable $"\
-		$"(e.g:$" $(call COLOR,make,yellow)$" run?arg1 OR $"$(call COLOR,make,yellow)$" run?'arg1 arg2')$"
-	@$(PRINTLN) $(call COLOR,make,yellow)$" debug  - builds/updates everything displaying more detailed messages$"
+	@$(NL)$(BR) $(NL)$(BR) $(MESSAGE_1.6) $(BR)
 	@$(NL)$(BR) $(MESSAGE_1.7)
-	@$(PRINTLN) $"Operative System:	$"$(call COLOR,$(if $(OS),$(OS),$"Unknown$"),$(if $(OS),green,red))
-	@$(PRINTLN) $"CPU architecture:	$"$(call COLOR,$(if $(PROCESSOR_ARCHITECTURE)$(NPROCS),$(PROCESSOR_ARCHITECTURE) (Core $(NPROCS)),$"Unknown$"),$(if $(PROCESSOR_ARCHITECTURE),green,red))
-	@$(PRINTLN) $"Terminal:		$"$(call COLOR,$(if $(TERMINAL),$(TERMINAL),$"Unknown$"),$(if $(TERMINAL),green,red))
-	@$(PRINTLN) $"Main src file name:	$"$(call COLOR,$(if $(TARGET_N),$(TARGET_N),$"Unknown$"),$(if $(TARGET_N),green,red))
-	@$(PRINTLN) $"Detected Language:	$"$(call COLOR,$(if $(SRCEXT),$(SRCEXT),$"Unknown$"),$(if $(SRCEXT),green,red))
+	@$(PRINTLN) $(call COLOR,\tmake,yellow)$"        - Builds or updates $"$(call COLOR,all,cyan)$" components, making $"$(call COLOR,$(TARGET_OUTPUT),green)$" ready for execution.$"
+	@$(PRINTLN) $(call COLOR,\tmake,yellow)$" $"$(call COLOR,clean,cyan)$"  - Removes object, file, folder and executable.$"
+	@$(PRINTLN) $(call COLOR,\tmake,yellow)$" $"$(call COLOR,remake,cyan)$" - Remake perfoms both $"$(call COLOR,clean,cyan)$" and compile processes for $"$(call COLOR,all,cyan)$" files.$"
+	@$(PRINTLN) $(call COLOR,\tmake,yellow)$" $"$(call COLOR,run,cyan)$"    - Builds or updates everything and runs immediately$"
+	@$(PRINTLN) $(call COLOR,\tmake,yellow)$" $"$(call COLOR,run?,cyan)$"   - Passes arguments to executable, unlike '$"$(call COLOR,run,cyan)$"' $"\
+		$"(e.g:$" $(call COLOR,make,yellow)$" $"$(call COLOR,run?,cyan)$"arg1 OR $"$(call COLOR,make,yellow)$" $"$(call COLOR,run?,cyan)$"'arg1 arg2').$"
+	@$(PRINTLN) $(call COLOR,\tmake,yellow)$" $"$(call COLOR,debug,cyan)$"  - Builds or updates $"$(call COLOR,all,cyan)$" while displaying more detailed messages.$"
+	@$(NL)$(BR) $(MESSAGE_1.8)
+	@$(PRINTLN) $"\tOperative System:	$"$(call COLOR,$(if $(OS),$(OS),$"Unknown$"),$(if $(OS),green,red))
+	@$(PRINTLN) $"\tCPU architecture:	$"$(call COLOR,$(if $(PROCESSOR_ARCHITECTURE)$(NPROCS),$(PROCESSOR_ARCHITECTURE) (Core $(NPROCS)),$"Unknown$"),$(if $(PROCESSOR_ARCHITECTURE),green,red))
+	@$(PRINTLN) $"\tTerminal:		$"$(call COLOR,$(if $(TERMINAL),$(TERMINAL),$"Unknown$"),$(if $(TERMINAL),green,red))
+	@$(PRINTLN) $"\tMain src file name:	$"$(call COLOR,$(if $(TARGET_N),$(TARGET_N),$"Unknown$"),$(if $(TARGET_N),green,red))
+	@$(PRINTLN) $"\tDetected Language:	$"$(call COLOR,$(if $(SRCEXT),$(SRCEXT),$"Unknown$"),$(if $(SRCEXT),green,red))
 	@$(NL)$(BR) $(NL)$(BR)
 
 # Non-File Targets

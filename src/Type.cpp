@@ -1,8 +1,7 @@
 #include "../include/Type.hpp"
 
 //Constructor with param speed
-Type::Type(const int S) {
-    this->speed = S;
+Type::Type(Config& conf) : config(conf) {
     this->textToType = this->readClipboard();
 }
 
@@ -45,9 +44,13 @@ void Type::simulateKeyPress(wchar_t c) {
  * @param text text to type
  * @param delay speed of typing in milliseconds
  */
-void Type::typeText() { this->typeText(this->textToType, this->speed); }
+void Type::typeText() { this->typeText(this->textToType, this->config.getLocalSpeed()); }
 void Type::typeText(const std::wstring& text, int delay) {
     for (wchar_t c : text) {
+        // Check if the user has stopped the typing
+        if (!Config::typingStatus) break;
+
+        // Simulate typing
         if (c == L'\n') this->simulateShiftEnterKey();
         else            this->simulateKeyPress(c);
 
@@ -77,21 +80,16 @@ std::wstring Type::readClipboard() {
  * 
  */
 void Type::readType() {
-   this->textToType = readClipboard();
+   this->textToType = this->readClipboard();
 
     // Output clipboard text for debugging
-    printClipboard();
-    typeText(textToType, this->speed);
+    this->printClipboard();
+    this->typeText(this->textToType, this->config.getLocalSpeed());
 }
 
 
 
 // ----  getters  -----
-
-// Getter for speed
-int Type::getSpeed() {
-    return this->speed;
-}
 
 // Getter for textToType
 std::wstring Type::getTextToType() {

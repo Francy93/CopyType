@@ -3,11 +3,15 @@
 
 #include <fstream>      // Used for file input and output
 
+#include "../include/Gui.hpp"
+#include "../include/Config.hpp"
+
+
 // header file for Gui.cpp
 class G_main {
     public:
     static int g_main();
-    static int g_main(int& typingSpeed, int& countdown);
+    static int g_main(Config& conf);
 
 };
 

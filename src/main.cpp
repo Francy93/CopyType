@@ -1,10 +1,10 @@
 
 #include "../include/G_main.hpp"
-#include "../lib/Util.h"
+#include "../include/Config.hpp"
 
 int main() {
-    int typingSpeed = Util::DEFAULF_SPEED, countdown = Util::DEFAULT_COUNTDOWN;
-    G_main::g_main(typingSpeed, countdown);
+    Config conf = Config();
+    G_main::g_main(conf);
 
     return 0;
 }
