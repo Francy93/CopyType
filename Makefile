@@ -200,6 +200,11 @@ REVERSE		=	$(if $(eval i := $(call MATH,$i+1))$($i),$($0),$(eval i := $(if $(cal
 REST		=	$(if $(eval i := $(call MATH,$i+1))$($i),$($0),$(eval i := $(if $(call GT,$i,1),$(call MATH,$i-1)))$(patsubst $s%,%,$(if \
 					$(call GT,$i,1),$(foreach j,$(call LISTGEN,$i),$(if $(call GT,$j,1),$($j))),$(foreach \
 						j,$(call LISTGEN,$(words $1)),$(if $(call GT,$j,1),$(word $j,$1)))))$(eval i := ))
+# make new directory (if it does not exist)
+MAKE_DIR	=	$(if $(and $1,$(call NOT,$(call IS_DIR,$1))),\
+					$(if $(AT),,$(NL)$(BR)) \
+					$(MESSAGE_2.0) $1 $(BR) \
+					$(call RECIPE_DEBUG, $(MD) $1 $(BR)))
 
 
 
@@ -487,16 +492,17 @@ exp_handler:
 
 # Make the Directories
 directories:
-	@$(if $(and $(OBJECT_DIR),$(call NOT,$(call IS_DIR,$(OBJECT_DIR))))$(and $(TARGET_DIR),$(call NOT,$(call IS_DIR,$(TARGET_DIR)))),\
-		$(if $(OBJECT_DIR)$(TARGET_DIR),$(NL)$(BR) $(MESSAGE_1.2) $(BR),) \
-		$(if $(and $(OBJECT_DIR),$(call NOT,$(call IS_DIR,$(OBJECT_DIR)))),\
-				$(if $(AT),,$(NL)$(BR)) \
-				$(MESSAGE_2.0) $(OBJECT_DIR) $(BR) \
-				$(call RECIPE_DEBUG, $(MD) $(OBJECT_DIR) $(BR))) \
-		$(if $(and $(TARGET_DIR),$(call NOT,$(call IS_DIR,$(TARGET_DIR)))),\
-				$(if $(AT),,$(NL)$(BR)) \
-				$(MESSAGE_2.0) $(TARGET_DIR) $(BR) \
-				$(call RECIPE_DEBUG, $(MD) $(TARGET_DIR) $(BR))))
+	@$(if $(and $(TARGET_DIR),$(call NOT,$(call IS_DIR,$(TARGET_DIR))))$(and \
+				$(OBJECT_DIR),$(call NOT,$(call IS_DIR,$(OBJECT_DIR))))$(and \
+				$(SOURCE_DIR),$(call NOT,$(call IS_DIR,$(SOURCE_DIR))))$(and \
+				$(INCLUDE_DIR),$(call NOT,$(call IS_DIR,$(INCLUDE_DIR))))$(and \
+				$(LIBRARY_DIR),$(call NOT,$(call IS_DIR,$(LIBRARY_DIR)))),\
+					$(NL)$(BR) $(MESSAGE_1.2) $(BR) \
+					$(call MAKE_DIR,$(TARGET_DIR)) \
+					$(call MAKE_DIR,$(OBJECT_DIR)) \
+					$(call MAKE_DIR,$(SOURCE_DIR)) \
+					$(call MAKE_DIR,$(INCLUDE_DIR)) \
+					$(call MAKE_DIR,$(LIBRARY_DIR)))
 
 # Clean removes all the object and executable files
 clean:
@@ -527,9 +533,7 @@ run: all
 	$(AT) $(TARGET_OUTPUT)
 	@$(NL)$(BR) $(MESSAGE_3.3)
 
-# run by passing arguments to the "main" \
-( previously used to remove last letter: $(shell head -c-2 <<< $@) ) \
-( previously used to remove first letter: $(shell cut -c2- <<< "$@")) )
+# run by passing arguments to the "main"
 run?%:
 	@$(if $(subst run?,,$@),\
 		$(MAKE) $(-W) all &&\

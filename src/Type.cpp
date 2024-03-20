@@ -2,7 +2,7 @@
 
 //Constructor with param speed
 Type::Type(Config& conf) : config(conf) {
-    this->textToType = this->readClipboard();
+	this->textToType = this->readClipboard();
 }
 
 // Destructor
@@ -11,14 +11,14 @@ Type::~Type() {}
 
 // Function to simulate a new line
 void Type::simulateShiftEnterKey() {
-    // Press the "Shift" key
-    keybd_event(VK_SHIFT, 0, 0, 0);
-    // Press the "Enter" key
-    keybd_event(VK_RETURN, 0, 0, 0);
-    // Release the "Enter" key
-    keybd_event(VK_RETURN, 0, KEYEVENTF_KEYUP, 0);
-    // Release the "Shift" key
-    keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYUP, 0);
+	// Press the "Shift" key
+	keybd_event(VK_SHIFT, 0, 0, 0);
+	// Press the "Enter" key
+	keybd_event(VK_RETURN, 0, 0, 0);
+	// Release the "Enter" key
+	keybd_event(VK_RETURN, 0, KEYEVENTF_KEYUP, 0);
+	// Release the "Shift" key
+	keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYUP, 0);
 }
 
 /**
@@ -27,15 +27,15 @@ void Type::simulateShiftEnterKey() {
  * @param c character to type
  */
 void Type::simulateKeyPress(wchar_t c) {
-    INPUT input;
-    input.type = INPUT_KEYBOARD;
-    input.ki.wVk = 0;
-    input.ki.wScan = c;
-    input.ki.dwFlags = KEYEVENTF_UNICODE;
-    SendInput(1, &input, sizeof(INPUT));
+	INPUT input;
+	input.type = INPUT_KEYBOARD;
+	input.ki.wVk = 0;
+	input.ki.wScan = c;
+	input.ki.dwFlags = KEYEVENTF_UNICODE;
+	SendInput(1, &input, sizeof(INPUT));
 
-    input.ki.dwFlags |= KEYEVENTF_KEYUP;
-    SendInput(1, &input, sizeof(INPUT));
+	input.ki.dwFlags |= KEYEVENTF_KEYUP;
+SendInput(1, &input, sizeof(INPUT));
 }
 
 /**
@@ -46,33 +46,33 @@ void Type::simulateKeyPress(wchar_t c) {
  */
 void Type::typeText() { this->typeText(this->textToType, this->config.getLocalSpeed()); }
 void Type::typeText(const std::wstring& text, int delay) {
-    for (wchar_t c : text) {
-        // Check if the user has stopped the typing
-        if (!Config::typingStatus) break;
+	for (wchar_t c : text) {
+		// Check if the user has stopped the typing
+		if (!Config::typingStatus) break;
 
-        // Simulate typing
-        if (c == L'\n') this->simulateShiftEnterKey();
-        else            this->simulateKeyPress(c);
+		// Simulate typing
+		if (c == L'\n') this->simulateShiftEnterKey();
+		else            this->simulateKeyPress(c);
 
-        // Delay between key presses
-        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-    }
+		// Delay between key presses
+		std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+	}
 }
 
 
 // read clipboard function
 std::wstring Type::readClipboard() {
-    std::wstring text;
-    if (OpenClipboard(NULL)) {
-        HANDLE hData = GetClipboardData(CF_UNICODETEXT);
-        wchar_t* pszText = static_cast<wchar_t*>(GlobalLock(hData));
-        if (pszText != NULL) {
-            text = pszText;
-            GlobalUnlock(hData);
-        }
-        CloseClipboard();
-    }
-    return text;
+	std::wstring text;
+	if (OpenClipboard(NULL)) {
+		HANDLE hData = GetClipboardData(CF_UNICODETEXT);
+		wchar_t* pszText = static_cast<wchar_t*>(GlobalLock(hData));
+		if (pszText != NULL) {
+			text = pszText;
+			GlobalUnlock(hData);
+		}
+		CloseClipboard();
+	}
+	return text;
 }
 
 /**
@@ -80,11 +80,11 @@ std::wstring Type::readClipboard() {
  * 
  */
 void Type::readType() {
-   this->textToType = this->readClipboard();
+	this->textToType = this->readClipboard();
 
-    // Output clipboard text for debugging
-    this->printClipboard();
-    this->typeText(this->textToType, this->config.getLocalSpeed());
+	// Output clipboard text for debugging
+	this->printClipboard();
+	this->typeText(this->textToType, this->config.getLocalSpeed());
 }
 
 
@@ -93,10 +93,10 @@ void Type::readType() {
 
 // Getter for textToType
 std::wstring Type::getTextToType() {
-    return this->textToType;
+	return this->textToType;
 }
 
 void Type::printClipboard() {
-        // Output clipboard text for debugging
-    std::wcout << L"Clipboard Text:\n" << this->textToType << "\n"<< std::endl;
+	// Output clipboard text for debugging
+	std::wcout << L"Clipboard Text:\n" << this->textToType << "\n"<< std::endl;
 }

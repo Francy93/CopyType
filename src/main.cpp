@@ -3,8 +3,8 @@
 #include "../include/Config.hpp"
 
 int main() {
-    Config conf = Config();
-    G_main::g_main(conf);
+	Config conf = Config();
+	G_main::g_main(conf);
 
-    return 0;
+	return 0;
 }
