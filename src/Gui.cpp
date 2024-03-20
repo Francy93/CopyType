@@ -56,15 +56,15 @@ void Gui::createGUI() {
 
 	// Create controls
 	// Title for Speed Input
-	CreateWindowEx(0, L"STATIC", L"Delay:", WS_CHILD | WS_VISIBLE, 10, 20, 100, 20, hwnd, NULL, NULL, NULL);
+	CreateWindowEx(0, L"STATIC", L"    Delay:", WS_CHILD | WS_VISIBLE, 40, 20, 100, 25, hwnd, NULL, NULL, NULL);
 	this->hwndSpeedInput = CreateWindowEx(0, L"EDIT", std::to_wstring(this->config.getLocalSpeed()).c_str(), WS_CHILD | WS_VISIBLE | WS_BORDER | ES_NUMBER,
-		120, 20, 100, 25, hwnd, NULL, NULL, NULL);
+		150, 20, 100, 25, hwnd, NULL, NULL, NULL);
 	SendMessage(this->hwndSpeedInput, EM_SETLIMITTEXT, 10, 0);
 
 	// Title for Countdown Input
-	CreateWindowEx(0, L"STATIC", L"Countdown:", WS_CHILD | WS_VISIBLE, 10, 60, 100, 20, hwnd, NULL, NULL, NULL);
+	CreateWindowEx(0, L"STATIC", L"    Countdown:", WS_CHILD | WS_VISIBLE, 40, 60, 100, 25, hwnd, NULL, NULL, NULL);
 	this->hwndCountdownInput = CreateWindowEx(0, L"EDIT", std::to_wstring(this->config.getLocalCountdown()).c_str(), WS_CHILD | WS_VISIBLE | WS_BORDER | ES_NUMBER,
-		120, 60, 100, 25, hwnd, NULL, NULL, NULL);
+		150, 60, 100, 25, hwnd, NULL, NULL, NULL);
 	SendMessage(this->hwndCountdownInput, EM_SETLIMITTEXT, 2, 0);
 
 	// Save button on the left side
